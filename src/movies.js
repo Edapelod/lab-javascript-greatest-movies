@@ -12,7 +12,6 @@ function howManyMovies(moviesArray) {
     let sPDrama = moviesArray.filter(drama => (drama.director === "Steven Spielberg") && drama.genre.includes("Drama"))
     return sPDrama.length
 }
-console.log(howManyMovies(movies))
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
@@ -29,10 +28,26 @@ function scoresAverage(moviesArray) {
     const resultAverage = Math.round(average2*100)/100;
     return resultAverage
 }
-console.log(scoresAverage(movies))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+/*    const allMovies = moviesArray.map(drama => {
+        return drama
+});*/
+    const dramaMovies = moviesArray.filter(element => (element.genre.includes("Drama")));
+    if (dramaMovies == "") {
+        return 0
+    }
+    //console.log(dramaMovies)
+    const dramaMoviesScore = dramaMovies.map(drama => drama.score);
+    //console.log(dramaMoviesScore)
+    //const dramaFilter = dramaMoviesScore.filter(element => typeof element === "number")
+    //console.log(dramaFilter)
+    const dramaMoviesAverage = dramaMoviesScore.reduce((previousValue, currentValue) => previousValue + currentValue);
+    const resultAverage = Math.round((dramaMoviesAverage/dramaMovies.length)*100)/100;
+    return resultAverage
+}
+console.log(dramaMoviesScore(movies))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
